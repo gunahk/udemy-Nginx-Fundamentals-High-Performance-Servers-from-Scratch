@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-VM_NAME = 'new-vm'
-
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -14,8 +12,8 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "bento/ubuntu-18.04"
-  config.vm.hostname = "pflnginx01.priv.lab.pfl.net"
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.hostname = "pflnginx01"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,5 +67,20 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt -y update
+    apt -y upgrade
+    apt install -y build-essential git tree
+    wget https://nginx.org/download/nginx-1.15.3.tar.gz
+    tar zxvf nginx-1.15.3.tar.gz
+    wget https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.gz
+    tar xzvf pcre-8.42.tar.gz
+    wget https://www.zlib.net/zlib-1.2.11.tar.gz
+    tar xzvf zlib-1.2.11.tar.gz
+    wget https://www.openssl.org/source/openssl-1.1.0h.tar.gz
+    tar xzvf openssl-1.1.0h.tar.gz
+    add-apt-repository -y ppa:maxmind/ppa
+    apt update
+    apt upgrade -y 
+    apt install -y perl libperl-dev libgd3 libgd-dev libgeoip1 libgeoip-dev geoip-bin libxml2 libxml2-dev libxslt1.1 libxslt1-dev
+    rm -rf *.tar.gz
   SHELL
 end
