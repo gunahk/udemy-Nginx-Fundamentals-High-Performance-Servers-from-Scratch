@@ -12,7 +12,9 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/bionic64"
+  #config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "centos/7"
+
   config.vm.hostname = "pflnginx01"
 
   # Disable automatic box update checking. If you disable this, then
@@ -60,7 +62,7 @@ Vagrant.configure("2") do |config|
   # end
   config.vm.provider "virtualbox" do |v|
     v.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
-end
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -68,8 +70,18 @@ end
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+  #config.vm.provision "shell", inline: <<-SHELL
+  #  apt -y update
+  #  apt -y upgrade
+  #  apt install -y build-essential git tree
+  #  add-apt-repository -y ppa:maxmind/ppa
+  #  apt update
+  #  apt upgrade -y 
+  #  apt install -y perl libperl-dev libgd3 libgd-dev libgeoip1 libgeoip-dev geoip-bin libxml2 libxml2-dev libxslt1.1 libxslt1-dev
+  #  rm -rf *.tar.gz
+  #SHELL
   config.vm.provision "shell", inline: <<-SHELL
-    apt -y update
+    yum -y update
     apt -y upgrade
     apt install -y build-essential git tree
     add-apt-repository -y ppa:maxmind/ppa
@@ -78,4 +90,5 @@ end
     apt install -y perl libperl-dev libgd3 libgd-dev libgeoip1 libgeoip-dev geoip-bin libxml2 libxml2-dev libxslt1.1 libxslt1-dev
     rm -rf *.tar.gz
   SHELL
+  config.vm.provision "file", source: "nginx.service", destination: "/lib/systemd/system/"
 end
