@@ -7,8 +7,8 @@
 # you're doing.
 Vagrant.configure("2") do |config|
   # Uncomment line below if you are using Hyper-V
-  #config.vm.synced_folder ".", "/vagrant", type: "smb"
-  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.synced_folder ".", "/vagrant", type: "smb"
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
