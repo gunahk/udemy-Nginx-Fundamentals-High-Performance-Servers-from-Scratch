@@ -73,17 +73,20 @@ make
 
 make install
 
+
+#mkdir -p /sites/demo
+#cp -R /vagrant/sites/demo/* /sites/demo/
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
+#cp /sites/demo/nginx.conf /etc/nginx/nginx.conf
+ln -s /vagrant/sites/demo/ /sites/demo/
+ln -s /vagrant/sites/demo/nginx.conf /etc/nginx/nginx.conf
+
 cp /vagrant/nginx.service /lib/systemd/system/nginx.service
 
 systemctl enable nginx
 systemctl start nginx
 systemctl status nginx
 
-mkdir -p /sites/demo
-cp -R /vagrant/sites/demo/* /sites/demo/
-cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
-cp /sites/demo/nginx.conf /etc/nginx/nginx.conf
-
-systemctl reload nginx
+#systemctl reload nginx
 
 echo "Done!!"
