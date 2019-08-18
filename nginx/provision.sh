@@ -8,7 +8,7 @@ NGINX_VER="1.14.0"
 yum -y groupinstall 'Development Tools'
 rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum -y install wget yum-utils
-yum -y install pcre-devel lua-devel openssl-devel gd-devel geoip-devel
+yum -y install pcre-devel lua-devel openssl-devel gd-devel geoip-devel cifs-utils
 
 if [ -d /tmp/build ]; then
   rm -rf /tmp/build
@@ -78,6 +78,7 @@ make install
 #cp -R /vagrant/sites/demo/* /sites/demo/
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
 #cp /sites/demo/nginx.conf /etc/nginx/nginx.conf
+mkdir -p /sites/demo
 ln -s /vagrant/sites/demo/ /sites/demo/
 ln -s /vagrant/sites/demo/nginx.conf /etc/nginx/nginx.conf
 
