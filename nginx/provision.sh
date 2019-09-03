@@ -6,7 +6,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NGINX_VER="1.14.0"
 
 yum -y groupinstall 'Development Tools'
-rpm -Uvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install wget yum-utils
 yum -y install pcre-devel lua-devel openssl-devel gd-devel geoip-devel cifs-utils
 
