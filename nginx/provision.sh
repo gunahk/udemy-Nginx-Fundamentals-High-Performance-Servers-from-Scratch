@@ -76,11 +76,13 @@ make install
 
 #mkdir -p /sites/demo
 #cp -R /vagrant/sites/demo/* /sites/demo/
-mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
+#mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
 #cp /sites/demo/nginx.conf /etc/nginx/nginx.conf
-mkdir -p /sites/demo
-ln -s /vagrant/sites/demo/ /sites/demo/
-ln -s /vagrant/sites/demo/nginx.conf /etc/nginx/nginx.conf
+mkdir -p /sites
+ln -s /vagrant/sites/demo /sites/demo
+#ln -s /vagrant/sites/demo/nginx.conf /etc/nginx/nginx.conf
+mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
+ln -s /sites/demo/nginx.conf /etc/nginx/nginx.conf
 
 cp /vagrant/nginx.service /lib/systemd/system/nginx.service
 
