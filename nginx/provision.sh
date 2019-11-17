@@ -3,7 +3,8 @@
 export LANG=C
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
-NGINX_VER="1.14.0"
+#NGINX_VER="1.14.0"
+NGINX_VER="1.16.0"
 
 yum -y groupinstall 'Development Tools'
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
