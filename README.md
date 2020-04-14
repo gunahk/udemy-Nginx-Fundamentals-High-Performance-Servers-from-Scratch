@@ -2,7 +2,7 @@
 
 ASSUMPTIONS:
 You have vagrant installed.
-You have virtualbox installed.
+You have virtualbox or Hyper-V installed.
 
 Instructions for use:
 
