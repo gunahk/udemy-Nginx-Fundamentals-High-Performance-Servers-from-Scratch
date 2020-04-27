@@ -6,34 +6,18 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  # Uncomment line below if you are using Hyper-V
-  #config.vm.synced_folder ".", "/vagrant", type: "smb", mount_options: ["vers=2.1"]
-  #config.vm.synced_folder ".", "/vagrant", type: "smb", smb_host: "172.21.48.1", mount_options: ["vers=2.1"]
-  # config.vm.synced_folder ".", "/vagrant", {
-  #   type: "smb", mount_options: ["vers=3.0"],
-  #   smb_username: ENV["VAGRANT_SMB_USERNAME"],
-  #   smb_password: ENV["VAGRANT_SMB_PASSWORD"]
-  # }
-  config.vm.synced_folder ".", "/vagrant", {
-    # type: "smb", smb_host: "172.23.80.1", mount_options: ["vers=3.0"],
-    type: "smb", smb_host: "172.26.96.1", mount_options: ["vers=3.0"],
-    smb_username: ENV["VAGRANT_SMB_USERNAME"],
-    smb_password: ENV["VAGRANT_SMB_PASSWORD"]
-  }
-  #config.vm.synced_folder ".", "/vagrant", type: "nfs"
-
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
-
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
-  #config.vm.box = "ubuntu/bionic64"
-  
+  # Uncomment lines below if you are using Hyper-V
   config.vm.define :build001 do |server|
     server.vm.box = "centos/7"
+    config.vm.provider "hyperv"
     server.vm.hostname = "pflnginx01"
     server.vm.network "private_network", type: "dhcp"
+    config.vm.synced_folder ".", "/vagrant", {
+      # type: "smb", smb_host: "172.23.80.1", mount_options: ["vers=3.0"],
+      type: "smb", smb_host: "172.25.0.1", mount_options: ["vers=3.0"],
+      smb_username: ENV["VAGRANT_SMB_USERNAME"],
+      smb_password: ENV["VAGRANT_SMB_PASSWORD"]
+    }
     server.vm.provision "shell", path: "provision.sh"
   end
 
